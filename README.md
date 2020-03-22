@@ -1,5 +1,8 @@
 # Work at Olist
 
+## Documentation
+You can find the documentation for this project on the DOCUMENTATION.md file in this folder.
+
 [Olist](https://olist.com/) is a company that offers an integration platform for sellers and marketplaces allowing them to sell their products across multiple channels.
 
 The Olist development team consists of developers who love what they do. Our agile development processes and our search for the best development practices provide a great environment for professionals who like to create quality software in good company.
