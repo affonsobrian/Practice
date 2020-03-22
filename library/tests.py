@@ -1,19 +1,17 @@
-from django.contrib.auth.models import AnonymousUser, User
-from django.test import TestCase, RequestFactory
+from rest_framework.test import APITestCase
 
-from .views import index
+from library.models import Author
 
 
-class SimpleTest(TestCase):
-    def setUp(self):
-        # Every test needs access to the request factory.
-        self.factory = RequestFactory()
+class AuthorTestCase(APITestCase):
+    def post(self):
+        response = self.client.post('/author/', {'name': 'Albert Einstein'}, format='json')
+        self.assertEqual(response.status_code, 201)
 
-    def test_details(self):
-        # Create an instance of a GET request.
-        request = self.factory.get("/")
-        request.user = AnonymousUser()
 
-        # Test my_view() as if it were deployed at /customer/details
-        response = index(request)
-        self.assertEqual(response.status_code, 200)
+class BooksTestCase(APITestCase):
+    def post(self):
+        Author.objects.create(name="Albert Einstein")
+        response = self.client.post('/books/', {'name': 'Physics III', 'edition': 1, 'publication_year': 1850,
+                                                'authors': [1]}, format='json')
+        self.assertEqual(response.status_code, 201)
